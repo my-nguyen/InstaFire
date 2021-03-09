@@ -38,14 +38,13 @@ class CreateActivity : AppCompatActivity() {
         // extract the signed-in user from the Users table
         firestore = FirebaseFirestore.getInstance()
         val userId = FirebaseAuth.getInstance().currentUser?.uid as String
-        firestore.collection("users")
+        firestore.collection("users1")
             .document(userId)
             .get()
             .addOnSuccessListener { snapshot ->
                 signedInUser = snapshot.toObject(User::class.java)
                 Log.i(PostActivity.TAG, "signed-in user: $signedInUser")
-            }
-            .addOnFailureListener { exception ->
+            }.addOnFailureListener { exception ->
                 Log.i(PostActivity.TAG, "Failure getting signed-in user", exception)
             }
 
